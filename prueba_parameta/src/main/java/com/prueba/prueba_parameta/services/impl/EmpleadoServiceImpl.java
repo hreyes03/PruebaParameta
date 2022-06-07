@@ -35,20 +35,15 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
     @Override
     public Period calcular_fechas(Date fechaInicio) {
-        System.out.println("fecha inicio: "+fechaInicio);
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        System.out.println("formato: "+formato);
         LocalDate fecha_actual = LocalDate.now();
         String fecha = dateToString(fechaInicio);
         LocalDate fecha_nacimiento = LocalDate.parse(fecha, formato);
         Period periodo = Period.between(fecha_nacimiento, fecha_actual);
-        System.out.printf("fecha" + periodo.getYears(), periodo.getMonths(), periodo.getDays());
-
         return periodo;
     }
 
     public String dateToString(Date fecha) {
-        Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(fecha);
     }
